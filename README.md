@@ -4,7 +4,7 @@
 
 [![GitHub Stars](https://img.shields.io/github/stars/miccunifi/QualiCLIP?style=social)](https://github.com/miccunifi/QualiCLIP)
 
-This is the **official repository** of the [**paper**]() "*Quality-aware Image-Text Alignment for Real-World Image Quality Assessment*".
+This is the **official repository** of the **paper** "*Quality-aware Image-Text Alignment for Real-World Image Quality Assessment*".
 
 ## Overview
 
