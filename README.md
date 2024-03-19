@@ -2,9 +2,10 @@
 
 ### Quality-aware Image-Text Alignment for Real-World Image Quality Assessment
 
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2403.11176)
 [![GitHub Stars](https://img.shields.io/github/stars/miccunifi/QualiCLIP?style=social)](https://github.com/miccunifi/QualiCLIP)
 
-This is the **official repository** of the **paper** "*Quality-aware Image-Text Alignment for Real-World Image Quality Assessment*".
+This is the **official repository** of the [**paper**](https://arxiv.org/abs/2403.11176) "*Quality-aware Image-Text Alignment for Real-World Image Quality Assessment*".
 
 ## Overview
 
@@ -15,6 +16,16 @@ No-Reference Image Quality Assessment (NR-IQA) focuses on designing methods to m
 
 Overview of the proposed quality-aware image-text alignment strategy. Starting from a pair of two random overlapping crops from a pristine image, we synthetically degrade them with $L$ increasing levels of intensity, resulting in $L$ pairs. Then, given two quality-related antonym prompts, we fine-tune the CLIP image encoder by ranking the similarity between the prompts and the images, according to their corresponding level of degradation. At the same time, for each pair of equally distorted crops, we force the similarity between the crops and the prompts to be comparable.
 
+## Citation
+
+```bibtex
+@article{agnolucci2024qualityaware,
+      title={Quality-Aware Image-Text Alignment for Real-World Image Quality Assessment}, 
+      author={Agnolucci, Lorenzo and Galteri, Leonardo and Bertini, Marco},
+      journal={arXiv preprint arXiv:2403.11176},
+      year={2024}
+}
+```
 
 ## To be released
 - [ ] Pre-trained model
