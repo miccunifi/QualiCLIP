@@ -5,7 +5,6 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from torch import nn
-from torch.utils.checkpoint import checkpoint, checkpoint_sequential
 
 
 class Bottleneck(nn.Module):
@@ -149,17 +148,17 @@ class ModifiedResNet(nn.Module):
     def forward(self, x, return_token=False, pos_embedding=False):
         def stem(x):
             x = self.relu1(self.bn1(self.conv1(x)))
-            x = self.relu2(self.bn2(checkpoint(self.conv2, x)))
-            x = self.relu3(self.bn3(checkpoint(self.conv3, x)))
+            x = self.relu2(self.bn2(self.conv2, x))
+            x = self.relu3(self.bn3(self.conv3, x))
             x = self.avgpool(x)
             return x
 
         x = x.type(self.conv1.weight.dtype)
         x = stem(x)
-        x = checkpoint(self.layer1, x)
-        x = checkpoint(self.layer2, x)
-        x = checkpoint(self.layer3, x)
-        x = checkpoint(self.layer4, x)
+        x = self.layer1(x)
+        x = self.layer2(x)
+        x = self.layer3(x)
+        x = self.layer4(x)
         if return_token:
             x, tokens = self.attnpool(x, return_token, pos_embedding)
             return x, tokens
@@ -214,7 +213,7 @@ class Transformer(nn.Module):
         self.resblocks = nn.Sequential(*[ResidualAttentionBlock(width, heads, attn_mask) for _ in range(layers)])
 
     def forward(self, x: torch.Tensor):
-        return checkpoint_sequential(self.resblocks, self.layers, x)
+        return self.resblocks(x)
 
 
 class VisionTransformer(nn.Module):
