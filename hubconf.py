@@ -35,7 +35,7 @@ class QualiCLIP(nn.Module):
 
     def forward(self, img: torch.Tensor) -> torch.Tensor:
         device = img.device
-        img_features = self.clip_model.encode_image(img, pos_embedding=self.pos_embedding)
+        img_features = self.clip_model.encode_image(img)
         img_features = F.normalize(img_features, dim=-1)
         prompts_features = self.get_prompts_features(device)
 
