@@ -5,6 +5,8 @@
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2403.11176)
 [![GitHub Stars](https://img.shields.io/github/stars/miccunifi/QualiCLIP?style=social)](https://github.com/miccunifi/QualiCLIP)
 
+**🔥🔥🔥 [2024/08/22] The pre-trained model and the inference code are now available**
+
 This is the **official repository** of the [**paper**](https://arxiv.org/abs/2403.11176) "*Quality-aware Image-Text Alignment for Real-World Image Quality Assessment*".
 
 ## Overview
@@ -27,8 +29,85 @@ Overview of the proposed quality-aware image-text alignment strategy. Starting f
 }
 ```
 
+## Usage
+
+### Minimal Working Example
+Thanks to [torch.hub](https://pytorch.org/docs/stable/hub.html), you can use our model for inference without the need to clone our repo or install any specific dependencies. QualiCLIP outputs a quality score in the range [0, 1], where higher is better.
+
+```python
+import torch
+import torchvision.transforms as transforms
+from PIL import Image
+
+# Set the device
+device = torch.device("cuda") if torch.cuda.is_available() else "cpu"
+
+# Load the model
+model = torch.hub.load(repo_or_dir="miccunifi/QualiCLIP", source="github", model="QualiCLIP")
+model.eval().to(device)
+
+# Define the preprocessing pipeline
+preprocess = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711]),
+])
+
+# Load the image
+img_path = "<path_to_your_image>"
+img = Image.open(img_path).convert("RGB")
+
+# Preprocess the image
+img = preprocess(img).unsqueeze(0).to(device)
+
+# Compute the quality score
+with torch.no_grad(), torch.cuda.amp.autocast():
+    score = model(img)
+
+print(f"Image quality score: {score.item()}")
+```
+
+<details>
+<summary><h3>Getting Started</h3></summary>
+
+#### Installation
+We recommend using the [**Anaconda**](https://www.anaconda.com/) package manager to avoid dependency/reproducibility
+problems. For Linux systems, you can find a conda installation guide [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html).
+
+1. Clone the repository
+
+```sh
+git clone https://github.com/miccunifi/QualiCLIP
+```
+
+2. Install Python dependencies
+
+```sh
+conda create -n QualiCLIP -y python=3.10
+conda activate QualiCLIP
+cd QualiCLIP
+chmod +x install_requirements.sh
+./install_requirements.sh
+```
+
+</details>
+
+<details>
+<summary><h3>Single Image Inference</h3></summary>
+To get the quality score of a single image, run the following command:
+
+```python
+python single_image_inference.py --img_path assets/01.png
+```
+
+```
+--img_path                  Path to the image to be evaluated
+```
+QualiCLIP outputs a quality score in the range [0, 1], where higher is better.
+
+</details>
+
 ## To be released
-- [ ] Pre-trained model
+- [x] Pre-trained model
 - [ ] Testing code
 - [ ] Training code
 
