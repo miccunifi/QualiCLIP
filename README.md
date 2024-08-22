@@ -5,7 +5,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2403.11176)
 [![GitHub Stars](https://img.shields.io/github/stars/miccunifi/QualiCLIP?style=social)](https://github.com/miccunifi/QualiCLIP)
 
-**🔥🔥🔥 [2024/08/22] The pre-trained model and the inference code are now available**
+**🔥🔥🔥 [2024/08/22] The pre-trained model and the inference code are now available** 
 
 This is the **official repository** of the [**paper**](https://arxiv.org/abs/2403.11176) "*Quality-aware Image-Text Alignment for Real-World Image Quality Assessment*".
 
