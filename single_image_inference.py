@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
     # Preprocess the images
     img = transforms.ToTensor()(img)
-    img = normalize(img).to(device)
+    img = normalize(img).unsqueeze(0).to(device)
 
     # Compute the quality score
     with torch.no_grad(), torch.cuda.amp.autocast():

@@ -55,6 +55,7 @@ class QualiCLIP(nn.Module):
             prompts_features = F.normalize(prompts_features, dim=-1)
             self.prompts_features = nn.Parameter(prompts_features, requires_grad=False)
 
+        self.prompts_features = self.prompts_features.to(device)
         return self.prompts_features
 
     def _load_checkpoint(self, state_dict: dict) -> None:
