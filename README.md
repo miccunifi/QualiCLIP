@@ -5,9 +5,12 @@
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2403.11176)
 [![GitHub Stars](https://img.shields.io/github/stars/miccunifi/QualiCLIP?style=social)](https://github.com/miccunifi/QualiCLIP)
 
-**🔥🔥🔥 [2024/08/22] The pre-trained model and the inference code are now available** 
+**🔥🔥🔥 [2025/01/15] QualiCLIP is now included in the [IQA-PyTorch](https://github.com/chaofengc/IQA-PyTorch) ![GitHub Stars](https://img.shields.io/github/stars/chaofengc/IQA-PyTorch?style=social) library**
 
 This is the **official repository** of the [**paper**](https://arxiv.org/abs/2403.11176) "*Quality-aware Image-Text Alignment for Real-World Image Quality Assessment*".
+
+> [!NOTE] 
+> If you are interested in IQA, take a look at our [new dataset](https://arxiv.org/abs/2406.17472) with UHD images and our [self-supervised](https://github.com/miccunifi/ARNIQA) NR-IQA model
 
 ## Overview
 
